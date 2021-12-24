@@ -52,8 +52,7 @@
     todayHTML.innerHTML = `<p>${dayToday}</p>`;
     
     btnSend.addEventListener('click', (e) =>{
-        
-        if(nameHTML.value.length === 0 || dayHTML.value.length === 0 || monthHTML.value.length === 0 || yearHTML.value.length === 0 || upload.value.length === 0){
+        if(nameHTML.value.length === 0 || dayHTML.value.length === 0 || monthHTML === 0 || yearHTML.value.length === 0 || upload.value.length === 0){
             alert('[ATENÇÂO] - Preencha todos os campos.')
         } else{
             CommeDate(nameHTML.value, dayHTML.value, monthHTML.value, yearHTML.value,);
@@ -151,9 +150,7 @@
                         const img = document.createElement('img');
                         img.setAttribute('class', 'background')
                         img.setAttribute('src', name.img)
-                        container.appendChild(img)
-                        
-                        
+                        container.appendChild(img) 
                     }
                 }
             }
@@ -164,7 +161,10 @@
             if(el.classList.contains('btn-delete')){
                 el.parentElement.remove()
                 modalEdit.classList.remove('show');
+                todayHTML.innerHTML = `<p>${dayToday}</p>`;
+                removeImg()
             }
+        
         })
         
         function clearUp(){
