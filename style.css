@@ -116,19 +116,21 @@ img{
 }
 
 
-.input input{
+.input input,
+.calendar input{
     background:linear-gradient(90deg, rgba(74, 67, 112, 0.7) 0%, rgba(93, 92, 104, 0.7) 100%);
-    width: 110px;
+    width: 310px;
     padding: 10px;
     color: #fff;
     border-radius: 10px;
-    margin: 20px 5px 25px 5px;
+    margin: 3px 5px 3px 5px;
     outline: none;
 }
 .input input:focus{
     box-shadow: 0 13px 8px -8px rgba(0, 0, 0, 0.5);
 }
-.input input::placeholder{
+.input input::placeholder,
+.calendar input::placeholder{
     color: #fff;
 }
 .file input{

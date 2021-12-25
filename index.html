@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
     <link rel="stylesheet" href="style.css">
     <title>Contador de Dias</title>
 </head>
@@ -42,11 +44,13 @@
             <h2>Adicionar Data Comemorativa</h2>
     
             <div class="input">
-                <input type="text" placeholder="Nome" name="name" id="name">
-                <input type="number" name="dia" placeholder="Dia (DD)" class="dia" id="day">
-                <input type="number" placeholder="Mês (MM)" name="mes" class="mes" id="month">
-                <input type="number" placeholder="Ano (AAAA)" name="ano" class="ano" id="year">
+                <input type="text" placeholder="Escreva uma descrição para sua data" name="name" id="name">
             </div>
+
+            <div class="calendar">
+                <input class="form-control" type="datetime-local" id="myDate" placeholder="Selecione sua data">
+            </div>
+
 
             <div class="file">
                 <input type="file"  name="image" accept="image/*" class="img" id="upload">
@@ -69,7 +73,7 @@
             </ul>
         </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="script.js"></script>
 </body>
 </html>

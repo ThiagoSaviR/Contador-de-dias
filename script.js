@@ -4,10 +4,13 @@
     const modalAdd = document.querySelector('#modalAdd');
     const modalEdit = document.querySelector('#modalEdit');
     const nameHTML = document.querySelector('#name');
-    const dayHTML = document.querySelector('#day');
-    const monthHTML = document.querySelector('#month');
-    const yearHTML = document.querySelector('#year');
+    // const dayHTML = document.querySelector('#day');
+    // const monthHTML = document.querySelector('#month');
+    // const yearHTML = document.querySelector('#year');
     const datesUl = document.querySelector('#dates');
+    const myDateHTML = document.querySelector('#myDate');
+
+    flatpickr("input[type=datetime-local", {});
   
     const btnAddDate = document.querySelector('#addDate');
     const btnCloseAdd = document.querySelector('#closeAdd');
@@ -41,26 +44,35 @@
         month: date.getMonth(), 
         year: date.getFullYear()
     }
-    
     function todayMonth(){
         const monthTxt = ['Janeiro', 'Fevereiro','Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
         let todayMonth = monthTxt[today.month]; 
         return `${today.day} de ${todayMonth} de ${today.year}`; 
     }
-
+ 
     const dayToday = todayMonth();
     todayHTML.innerHTML = `<p>${dayToday}</p>`;
     
     btnSend.addEventListener('click', (e) =>{
-        if(nameHTML.value.length === 0 || dayHTML.value.length === 0 || monthHTML === 0 || yearHTML.value.length === 0 || upload.value.length === 0){
-            alert('[ATENÇÂO] - Preencha todos os campos.')
-        } else{
-            CommeDate(nameHTML.value, dayHTML.value, monthHTML.value, yearHTML.value,);
+        const todayIf = new Date(`${today.month +1}-${today.day}-${today.year}`);
+        const myDate = new Date(myDateHTML.value);
+        const todayIfInMs = todayIf.getTime()
+        const myDateIfInMs = myDate.getTime()
+
+        if(myDateIfInMs < todayIfInMs ){
+            alert('[ATENÇÂO] - Sua data já passou ou é hoje! Adicione uma nova data. =)')
+        }else if(nameHTML.value.length === 0){alert('[ATENÇÂO] - Adicione uma descrição!')
+
+        }else{
+
+            CommeDate(nameHTML.value, myDate.getDate(), myDate.getMonth(), myDate.getFullYear());
             modalAdd.classList.remove('show');
             getBase64 (upload)
             countAndCreateDate()
             clearUp()
         }
+
+
     })
 
     btnToday.addEventListener('click', (e) =>{
@@ -71,14 +83,15 @@
         })
 
         const dates = []
-        function CommeDate (name, day, month, year, img){
+        function CommeDate (name, day, month, year){
             const CDate = {
                 name: name, 
-                day: day, 
-                month: month, 
+                day: day+1, 
+                month: month+1, 
                 year: year
             }    
             dates.push(CDate);
+            console.log(dates)
             return dates;
         }
         
@@ -169,9 +182,7 @@
         
         function clearUp(){
             nameHTML.value = ''
-            dayHTML.value = ''
-            monthHTML.value = ''
-            yearHTML.value = ''
+            myDateHTML.value = ''
             upload.value = ''
         }
         
