@@ -5,7 +5,6 @@
     box-sizing: border-box;
     border:none;
 }
-
 body{
     width: 100vw;
     height: 100vh;
@@ -16,7 +15,6 @@ body{
     flex-direction: column;
     
 }
-
 img{
     width: 100%;
     height: 100%;
@@ -26,9 +24,6 @@ img{
     left: 0px;
     
 }
-
-
-
 .container h1{
     margin-bottom: 50px;
     text-align: center;
@@ -47,7 +42,6 @@ img{
     z-index: 0;
     margin-right: 15px;
 }
-
 .date{
     color: rgb(53, 34, 109);
     background:linear-gradient(#fffbfb, #7285b9);
@@ -64,8 +58,9 @@ img{
 .date p{
     font-size: 2rem;
 }
-
-
+.buttons{
+    width: 430px;
+}
 .btn{
     padding: 0.7em 2.3em;
     margin-top: 10px;
@@ -78,14 +73,18 @@ img{
     border-radius:8px; 
     transition: 0.5s;
 }
-
 .btn:hover, .btn:focus, .btn:active {
   box-shadow: 0 13px 8px -8px rgba(0, 0, 0, 0.5);
 }
 .edit button{
     width: 100%;
+    background:linear-gradient(rgba(109, 231, 115, 0.7),rgba(46, 199, 33, 0.7));
+    color: rgb(15, 63, 11)
 }
 
+.add-today button{
+    padding: 0.7rem 2.77rem;
+}
 .container-modal{
     width: 100vw;
     height: 100vh;
@@ -102,11 +101,13 @@ img{
     display: flex;
 }
 .modal-add{
-    background: #fff;
+    width: 500px;
+    height: 400px;
+    background: #f3f3f3;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:space-between;
     padding: 40px;
     border-radius: 5px;
     position: relative; 
@@ -114,8 +115,6 @@ img{
 .modal-add h2{
     margin-bottom: 20px; 
 }
-
-
 .input input,
 .calendar input{
     background:linear-gradient(90deg, rgba(74, 67, 112, 0.7) 0%, rgba(93, 92, 104, 0.7) 100%);
@@ -136,7 +135,6 @@ img{
 .file input{
     margin-bottom: 10px;
 }
-
 .close{
     position: absolute;
     font-size: 1.2rem;
@@ -150,24 +148,18 @@ img{
     cursor: pointer;
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.3);
 }
-
 .dates-edit li{
     width: 400px;
     margin-bottom: 10px;
     display: flex;
-  
 }
-
 .dates-edit button{
     width: 100px;
     height: 35px;
     padding: 0.7em 1.3em;
     font-size:0.8rem; 
     margin: 0 5px;
-    
-    
 }
-
 .modal-edit{
     background: #fff;
     display: flex;
@@ -181,10 +173,8 @@ img{
 .modal-edit h2{
     margin-bottom: 20px; 
 }
-
 li > p{
     width: 50%;
     display: flex;
     align-items: center;
-    
 }

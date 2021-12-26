@@ -20,7 +20,7 @@
     const btnToday = document.querySelector('#btnToday');
     
     const container = document.querySelector('#container');
-    const upload = document.querySelector('#upload');
+    let upload = document.querySelector('#upload');
    
     /* **Inicio** Modal add/remove/edit uma data comemorativa*/
     btnAddDate.addEventListener('click', (e) =>{
@@ -59,27 +59,27 @@
         const todayIfInMs = todayIf.getTime()
         const myDateIfInMs = myDate.getTime()
 
-        if(myDateIfInMs < todayIfInMs ){
+        if(myDateIfInMs < todayIfInMs){
             alert('[ATENÇÂO] - Sua data já passou ou é hoje! Adicione uma nova data. =)')
-        }else if(nameHTML.value.length === 0){alert('[ATENÇÂO] - Adicione uma descrição!')
-
+        }else if(nameHTML.value.length === 0){
+            alert('[ATENÇÂO] - Adicione uma descrição!')
+        }else if(myDateHTML.value.length === 0){
+            alert('[ATENÇÂO] - Adicione uma data!')
+        }else if(upload.value.length === 0){
+            alert('[ATENÇÂO] - Adicione uma imagem!')
         }else{
-
             CommeDate(nameHTML.value, myDate.getDate(), myDate.getMonth(), myDate.getFullYear());
             modalAdd.classList.remove('show');
             getBase64 (upload)
             countAndCreateDate()
             clearUp()
         }
-
-
     })
 
     btnToday.addEventListener('click', (e) =>{
         textHTML.innerHTML = `<h2>Hoje é:</h2>`;
             todayHTML.innerHTML = `<p>${dayToday}</p>`;
             removeImg()
-            
         })
 
         const dates = []
@@ -95,10 +95,10 @@
             return dates;
         }
         
-        const segundos = 1000;
-        const minutos = segundos*60;
-        const horas = minutos*60;
-        const dias = horas*24;
+        const seconds = 1000;
+        const minutes = seconds*60;
+        const hours = minutes*60;
+        const days = hours*24;
         
         function getBase64(element) {
             var file = element.files[0];
@@ -119,7 +119,7 @@
                 for(let i in dat){
                     MS = {
                         name: dates[i].name,
-                        faltam: Math.ceil((new Date(dat[i]).getTime() - date.getTime()) / dias),
+                        faltam: Math.ceil((new Date(dat[i]).getTime() - date.getTime()) / days),
                         img: result
                     }
                 }
