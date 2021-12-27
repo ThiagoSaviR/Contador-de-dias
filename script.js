@@ -14,7 +14,11 @@
     const btnToday = document.querySelector('#btnToday');
     const container = document.querySelector('#container');
     const upload = document.querySelector('#upload');
-    flatpickr("input[type=datetime-local]", {});
+    const config = {
+        altInput: true,
+        altFormat: "d F, Y"
+    }
+    flatpickr("input[type=datetime-local]", config);
     /* **Inicio** Modal add/remove/edit uma data comemorativa*/
     const dates = [];
     btnAddDate.addEventListener('click', (e) =>{
