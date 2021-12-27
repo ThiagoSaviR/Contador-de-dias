@@ -13,7 +13,6 @@ body{
     align-items: center;
     background: linear-gradient(#000000, #1e3575);
     flex-direction: column;
-    
 }
 img{
     width: 100%;
@@ -22,7 +21,6 @@ img{
     z-index: -1;
     top: 0px;
     left: 0px;
-    
 }
 .container h1{
     margin-bottom: 50px;
@@ -81,7 +79,6 @@ img{
     background:linear-gradient(rgba(109, 231, 115),rgba(46, 199, 33));
     color: rgb(15, 63, 11)
 }
-
 .add-today button{
     padding: 0.7rem 2.77rem;
 }
