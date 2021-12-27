@@ -65,7 +65,7 @@ img{
     padding: 0.7em 2.3em;
     margin-top: 10px;
     cursor: pointer;
-    background:linear-gradient(rgb(255, 251, 251,0.7), rgb(114, 133, 185, 0.7));
+    background:linear-gradient(rgb(255, 251, 251), rgb(114, 133, 185));
     text-decoration: none;
     font-weight:bold;
     font-size:1rem; 
@@ -78,7 +78,7 @@ img{
 }
 .edit button{
     width: 100%;
-    background:linear-gradient(rgba(109, 231, 115, 0.7),rgba(46, 199, 33, 0.7));
+    background:linear-gradient(rgba(109, 231, 115),rgba(46, 199, 33));
     color: rgb(15, 63, 11)
 }
 
@@ -154,7 +154,6 @@ img{
     display: flex;
 }
 .dates-edit button{
-    width: 100px;
     height: 35px;
     padding: 0.7em 1.3em;
     font-size:0.8rem; 
@@ -170,11 +169,23 @@ img{
     border-radius: 5px;
     position: relative;
 }
+.modal-edit i{
+    font-size: 1.3rem;
+}
 .modal-edit h2{
     margin-bottom: 20px; 
 }
 li > p{
-    width: 50%;
+    width: 80%;
     display: flex;
     align-items: center;
+}
+.btn-delete{
+    background: linear-gradient(rgba(243, 178, 178), rgba(231, 68, 68));
+    color: rgba(58, 10, 10);
+    display: flex;
+    align-items: center;
+}
+.fas, .fa-trash{
+    pointer-events: none;
 }

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Contador de Dias</title>
 </head>
@@ -18,7 +19,7 @@
         
         <h1>
             <img src="assets/img/2620532_calendar_employee_job_seeker_unemployee_icon.png" alt="title">
-            Gerenciador de Datas</h1>
+            Gerenciador de Datas </h1>
         <div class="date">
             <h2 id="text">Hoje é:</h2>
             <div id="today">
@@ -64,13 +65,10 @@
     <!-- MODAL Datas Cadastradas -->
     
     <section class="container-modal" id="modalEdit">
-        <div class="modal-edit">
+        <div class="modal-edit" id="modalListEdit">
             <button class="close" id="closeEdit">X</button>
             <h2>Datas Cadastradas</h2>
-          
-            <ul class="dates-edit" id="dates">
-               
-            </ul>
+            <ul class="dates-edit" id="dates"></ul>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

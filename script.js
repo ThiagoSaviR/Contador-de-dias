@@ -3,10 +3,8 @@
     const textHTML = document.querySelector('#text');
     const modalAdd = document.querySelector('#modalAdd');
     const modalEdit = document.querySelector('#modalEdit');
+    const modalListEdit = document.querySelector('#modalListEdit');
     const nameHTML = document.querySelector('#name');
-    // const dayHTML = document.querySelector('#day');
-    // const monthHTML = document.querySelector('#month');
-    // const yearHTML = document.querySelector('#year');
     const datesUl = document.querySelector('#dates');
     const myDateHTML = document.querySelector('#myDate');
 
@@ -23,6 +21,8 @@
     let upload = document.querySelector('#upload');
    
     /* **Inicio** Modal add/remove/edit uma data comemorativa*/
+    const dates = []
+
     btnAddDate.addEventListener('click', (e) =>{
         modalAdd.classList.add('show');
     });
@@ -36,7 +36,7 @@
     btnCloseEdit.addEventListener('click', (e) =>{
         modalEdit.classList.remove('show');
     });
-    /* **Fim** odal add/remove adicionar uma data comemorativa*/
+    /* **Fim** modal add/remove adicionar uma data comemorativa*/
 
     const date = new Date();
     const today = {
@@ -74,6 +74,7 @@
             countAndCreateDate()
             clearUp()
         }
+
     })
 
     btnToday.addEventListener('click', (e) =>{
@@ -82,7 +83,7 @@
             removeImg()
         })
 
-        const dates = []
+      
         function CommeDate (name, day, month, year){
             const CDate = {
                 name: name, 
@@ -127,16 +128,18 @@
                 const li = document.createElement('li');
                 const btnSelect = document.createElement('button');
                 const btnDelete = document.createElement('button');
+                const btnDeleteI = document.createElement('i');
                 for(let d in dateInMS){
                     li.setAttribute('class', dateInMS[d].name);
                     li.innerHTML = `<p> ${dateInMS[d].name}</p>`
                     datesUl.appendChild(li);
-                    btnSelect.setAttribute('class', `${dateInMS[d].name} btn btn-select`);
+                    btnSelect.setAttribute('class', `${dateInMS[d].name} btn btn-select `);
                     btnDelete.setAttribute('class', `${dateInMS[d].name} btn btn-delete`);
+                    btnDeleteI.setAttribute('class', 'fa fa-trash');
                     btnSelect.innerText = 'Selecionar';
-                    btnDelete.innerText = 'Excluir';
                     li.appendChild(btnSelect);
                     li.appendChild(btnDelete);
+                    btnDelete.appendChild(btnDeleteI);
                 }
             })
         }
@@ -172,12 +175,14 @@
         document.addEventListener('click', (e) =>{
             const el = e.target;
             if(el.classList.contains('btn-delete')){
-                el.parentElement.remove()
-                modalEdit.classList.remove('show');
-                todayHTML.innerHTML = `<p>${dayToday}</p>`;
-                removeImg()
+                const del = confirm('Você irá apagar esta data clicando em Ok.')
+                if(del){
+                    el.parentElement.remove()
+                    modalEdit.classList.remove('show');
+                    todayHTML.innerHTML = `<p>${dayToday}</p>`;
+                    removeImg()
+                }
             }
-        
         })
         
         function clearUp(){
