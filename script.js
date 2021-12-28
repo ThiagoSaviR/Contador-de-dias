@@ -64,7 +64,6 @@
         }else{
             CommeDate(nameHTML.value, myDate.getDate(), myDate.getMonth(), myDate.getFullYear());
             modalAdd.classList.remove('show');
-            getBase64 (upload);
             countAndCreateDate();
             clearUp();
         }
@@ -88,25 +87,26 @@
     const minutes = seconds*60;
     const hours = minutes*60;
     const days = hours*24;   
+
     function getBase64(element) {
-        var file = element.files[0];
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
-    }   
+         var file = element.files[0];
+         return new Promise((resolve, reject) => {
+             const reader = new FileReader();
+             reader.readAsDataURL(file);
+             reader.onload = () => resolve(reader.result);
+             reader.onerror = error => reject(error);
+         });
+     }   
     const dateInMS= [];
-    function countAndCreateDate(){
+    async function countAndCreateDate(){
+        const img = await getBase64(upload);
         const dat = getNewDate();
         let MS;   
-        getBase64(upload).then(function(result){
             for(let i in dat){
                 MS = {
                     name: dates[i].name,
                     faltam: Math.ceil((new Date(dat[i]).getTime() - date.getTime()) / days),
-                    img: result
+                    img: img
                 };
             }        
             dateInMS.push(MS);   
@@ -132,8 +132,9 @@
                 li.appendChild(btnDelete);
                 btnDelete.appendChild(btnDeleteI);
             }
-        });
+        
     }
+    
     const newDate = []; 
     function getNewDate (){
         let date;
