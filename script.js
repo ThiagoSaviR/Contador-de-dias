@@ -65,6 +65,7 @@
             CommeDate(nameHTML.value, myDate.getDate(), myDate.getMonth(), myDate.getFullYear());
             modalAdd.classList.remove('show');
             countAndCreateDate();
+            
             clearUp();
         }
     });
@@ -96,7 +97,12 @@
              reader.onload = () => resolve(reader.result);
              reader.onerror = error => reject(error);
          });
-     }   
+     }  
+     function dateSaved(){
+        const datesString = localStorage.getItem('dates');
+        const SaveDate = JSON.parse(datesString);
+        return SaveDate
+     }
     const dateInMS= [];
     async function countAndCreateDate(){
         const img = await getBase64(upload);
@@ -109,31 +115,32 @@
                     img: img
                 };
             }        
-            dateInMS.push(MS);   
-            console.log(dateInMS);    
+            dateInMS.push(MS);     
             localStorage.setItem('dates', JSON.stringify(dateInMS))
-            const datesString = localStorage.getItem('dates');
-            const SaveDate = JSON.parse(datesString);
-            console.log(SaveDate);
-    
+            createLine()
+    }
+
+    function createLine(){
+        const SaveDate = dateSaved()
+        for(let d of SaveDate){
             const li = document.createElement('li');
             const btnSelect = document.createElement('button');
             const btnDelete = document.createElement('button');
             const btnDeleteI = document.createElement('i');
-            for(let d in SaveDate){
-                li.setAttribute('class', SaveDate[d].name);
-                li.innerHTML = `<p> ${SaveDate[d].name}</p>`;
-                datesUl.appendChild(li);
-                btnSelect.setAttribute('class', `${SaveDate[d].name} btn btn-select `);
-                btnDelete.setAttribute('class', `${SaveDate[d].name} btn btn-delete`);
-                btnDeleteI.setAttribute('class', 'fa fa-trash');
-                btnSelect.innerText = 'Selecionar';
-                li.appendChild(btnSelect);
-                li.appendChild(btnDelete);
-                btnDelete.appendChild(btnDeleteI);
-            }
-        
+            
+            li.setAttribute('class', d.name);
+            li.innerHTML = `<p> ${d.name}</p>`;
+            datesUl.appendChild(li);
+            btnSelect.setAttribute('class', `${d.name} btn btn-select `);
+            btnDelete.setAttribute('class', `${d.name} btn btn-delete`);
+            btnDeleteI.setAttribute('class', 'fa fa-trash');
+            btnSelect.innerText = 'Selecionar';
+            li.appendChild(btnSelect);
+            li.appendChild(btnDelete);
+            btnDelete.appendChild(btnDeleteI);
+        }
     }
+    createLine()
     
     const newDate = []; 
     function getNewDate (){
@@ -147,8 +154,9 @@
     document.addEventListener('click', (e) =>{
         const el = e.target;
         if(el.classList.contains('btn-select')){
+            const SaveDate = dateSaved()
             removeImg();
-            for(let name of dateInMS){
+            for(let name of SaveDate){
                 if(el.parentElement.className === name.name){
                     textHTML.innerHTML = `<h2>Faltam:</h2>`;
                     todayHTML.innerHTML = `<p>${name.faltam} dia(s) para: ${name.name}</p>`;
@@ -164,8 +172,16 @@
     document.addEventListener('click', (e) =>{
         const el = e.target;
         if(el.classList.contains('btn-delete')){
+            const SaveDate = dateSaved();
             const del = confirm('Você irá apagar esta data clicando em Ok.');
             if(del){
+                for(let i in SaveDate){
+                    console.log(SaveDate[i]);
+                    if(el.parentElement.className === SaveDate[i].name){
+                        console.log('apagou a data');
+                    }
+                }
+                console.log(el.parentElement.className);
                 el.parentElement.remove();
                 todayHTML.innerHTML = `<p>${dayToday}</p>`;
                 removeImg();
